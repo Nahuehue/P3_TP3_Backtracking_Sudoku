@@ -7,10 +7,8 @@ import org.junit.jupiter.api.Test;
 // Importamos la clase que vamos a probar
 import logica.Solver; // <-- Importa Solver
 
-/**
- * Pruebas unitarias para la clase Solver.
- */
-public class SolverTest { // Nombre de la clase cambiado a SolverTest
+
+public class SolverTest { 
 
     // El objeto a probar
     private Solver solver; // <-- Usa el tipo Solver

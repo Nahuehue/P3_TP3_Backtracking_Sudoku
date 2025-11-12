@@ -10,8 +10,6 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
@@ -22,9 +20,7 @@ import logica.Generador;
 
 public class SudokuInterfaz extends JFrame {
 
-    /**
-	 * 
-	 */
+ 
 	private static final long serialVersionUID = 1L;
 	private static final int TAMANIO = 9;
     private JPanel panelContenido;
@@ -56,14 +52,13 @@ public class SudokuInterfaz extends JFrame {
         setContentPane(panelContenido);
         panelContenido.setLayout(null); 
 
-        // === NUEVO: Texto de Ayuda ===
         JLabel lblInstruccion = new JLabel("Ingrese un tablero manualmente o genere uno aleatorio.");
         lblInstruccion.setFont(new Font("Tahoma", Font.PLAIN, 12));
         lblInstruccion.setHorizontalAlignment(SwingConstants.CENTER);
         lblInstruccion.setBounds(30, 5, 405, 15);
         panelContenido.add(lblInstruccion);
 
-        // --- Panel de la Grilla (un poco más abajo) ---
+        // --- Panel de la Grilla ---
         JPanel panelGrilla = new JPanel();
         panelGrilla.setBounds(30, 25, 405, 405); // Ajustado
         panelContenido.add(panelGrilla);
@@ -90,7 +85,7 @@ public class SudokuInterfaz extends JFrame {
         btnResolver.addActionListener(e -> resolverSudoku());
         panelContenido.add(btnResolver);
 
-        // === NUEVO: Botón Validar ===
+        // === Botón Validar ===
         JButton btnValidar = new JButton("Validar");
         btnValidar.setFont(new Font("Tahoma", Font.BOLD, 12));
         btnValidar.setBounds(160, 450, 120, 30);
@@ -120,18 +115,17 @@ public class SudokuInterfaz extends JFrame {
         panelContenido.add(btnGenerar);
     }
     
-    // ... (generarSudoku, resolverSudoku, limpiarTablero, leer..., actualizar...) ...
-    // Esos métodos no cambian.
+ 
     
     /**
-     * NUEVO: Llama al Solver para validar el tablero ingresado
+     * Llama al Solver para validar el tablero ingresado
      * sin intentar resolverlo.
      */
     private void validarTablero() {
         try {
             int[][] tablero = leerTableroDeInterfaz();
             
-            // Usamos el método que hicimos público en el Solver
+            // Usamos el método público de el Solver
             if (solver.esTableroValido(tablero)) {
                 JOptionPane.showMessageDialog(this, "El tablero ingresado es válido.", "Validación Exitosa", JOptionPane.INFORMATION_MESSAGE);
             } else {
@@ -157,8 +151,7 @@ public class SudokuInterfaz extends JFrame {
                 actualizarInterfazDesdeTablero(tablero);
                 JOptionPane.showMessageDialog(this, "¡Sudoku Resuelto!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                // Ahora, el usuario sabe si es inválido (por el botón Validar)
-                // o si simplemente no tiene solución.
+            	
                 JOptionPane.showMessageDialog(this, "No se encontró solución para este tablero.", "Fallo", JOptionPane.WARNING_MESSAGE);
             }
         } catch (NumberFormatException e) {

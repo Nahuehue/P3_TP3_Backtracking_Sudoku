@@ -7,10 +7,10 @@ public class Solver {
 
     /**
      * Método público para resolver.
-     * AHORA: Primero valida el tablero inicial.
+     * Primero valida el tablero inicial.
      */
     public boolean resolver(int[][] tablero) {
-        // 1. NUEVO: Validar los números prefijados primero.
+        // 1: Validar los números prefijados primero.
         if (!esTableroValido(tablero)) {
             return false; // Falla rápido si el tablero es inválido
         }
